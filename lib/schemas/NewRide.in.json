@@ -1,0 +1,131 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "Represents a requested, ongoing, or finished Lyft ride",
+            "properties": {
+                "cost_token": {
+                    "description": "A token that confirms the user has accepted current Prime Time and/or fixed price charges",
+                    "type": "string"
+                },
+                "destination": {
+                    "allOf": [
+                        {
+                            "allOf": [
+                                {
+                                    "example": {
+                                        "lat": 36.9442175,
+                                        "lng": -123.8679133
+                                    },
+                                    "properties": {
+                                        "lat": {
+                                            "description": "The latitude component of a location",
+                                            "format": "double",
+                                            "type": "number"
+                                        },
+                                        "lng": {
+                                            "description": "The longitude component of a location",
+                                            "format": "double",
+                                            "type": "number"
+                                        }
+                                    },
+                                    "required": [
+                                        "lat",
+                                        "lng"
+                                    ],
+                                    "type": "object"
+                                },
+                                {
+                                    "properties": {
+                                        "address": {
+                                            "description": "A human readable address at/near the given location",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ],
+                            "example": {
+                                "address": "123 Main St, Anytown, CA",
+                                "lat": 36.9442175,
+                                "lng": -123.8679133
+                            },
+                            "type": "object"
+                        }
+                    ],
+                    "description": "The *requested* location for passenger drop off",
+                    "type": "object"
+                },
+                "origin": {
+                    "allOf": [
+                        {
+                            "allOf": [
+                                {
+                                    "example": {
+                                        "lat": 36.9442175,
+                                        "lng": -123.8679133
+                                    },
+                                    "properties": {
+                                        "lat": {
+                                            "description": "The latitude component of a location",
+                                            "format": "double",
+                                            "type": "number"
+                                        },
+                                        "lng": {
+                                            "description": "The longitude component of a location",
+                                            "format": "double",
+                                            "type": "number"
+                                        }
+                                    },
+                                    "required": [
+                                        "lat",
+                                        "lng"
+                                    ],
+                                    "type": "object"
+                                },
+                                {
+                                    "properties": {
+                                        "address": {
+                                            "description": "A human readable address at/near the given location",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ],
+                            "example": {
+                                "address": "123 Main St, Anytown, CA",
+                                "lat": 36.9442175,
+                                "lng": -123.8679133
+                            },
+                            "type": "object"
+                        }
+                    ],
+                    "description": "The *requested* location for passenger pickup",
+                    "type": "object"
+                },
+                "primetime_confirmation_token": {
+                    "description": "A token that confirms the user has accepted current primetime charges (Deprecated)",
+                    "type": "string"
+                },
+                "ride_type": {
+                    "description": "The ID of the ride type",
+                    "enum": [
+                        "lyft",
+                        "lyft_line",
+                        "lyft_plus",
+                        "lyft_premier",
+                        "lyft_lux",
+                        "lyft_luxsuv"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "ride_type",
+                "origin"
+            ],
+            "type": "object"
+        }
+    }
+}

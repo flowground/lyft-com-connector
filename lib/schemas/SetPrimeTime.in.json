@@ -1,0 +1,34 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "lat": 37.7833,
+                "lng": -122.4167,
+                "primetime_percentage": "25%"
+            },
+            "properties": {
+                "lat": {
+                    "description": "The latitude component of a location",
+                    "format": "double",
+                    "type": "number"
+                },
+                "lng": {
+                    "description": "The longitude component of a location",
+                    "format": "double",
+                    "type": "number"
+                },
+                "primetime_percentage": {
+                    "description": "The Prime Time to be applied as a string, e.g., '25%'",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "lat",
+                "lng",
+                "primetime_percentage"
+            ],
+            "type": "object"
+        }
+    }
+}

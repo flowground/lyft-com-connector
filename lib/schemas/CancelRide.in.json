@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "cancel_confirmation_token": "656a91d"
+            },
+            "properties": {
+                "cancel_confirmation_token": {
+                    "description": "Token affirming the user accepts the cancellation fee. Required if a cancellation fee is in effect.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "type": "object",
+    "properties": {
+        "start_time": {
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+        },
+        "end_time": {
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+        },
+        "limit": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0,
+            "maximum": 50,
+            "exclusiveMinimum": true,
+            "exclusiveMaximum": false,
+            "default": 10
+        }
+    }
+}

@@ -1,0 +1,67 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Rating and optional feedback and tip",
+            "example": {
+                "feedback": "Great ride!",
+                "rating": 5,
+                "tip": {
+                    "amount": 100,
+                    "currency": "USD"
+                }
+            },
+            "properties": {
+                "feedback": {
+                    "description": "The passenger's written feedback about this ride",
+                    "type": "string"
+                },
+                "rating": {
+                    "description": "The passenger's rating of this ride from 1 to 5",
+                    "format": "int32",
+                    "maximum": 5,
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "tip": {
+                    "allOf": [
+                        {
+                            "allOf": [
+                                {
+                                    "example": {
+                                        "amount": 300,
+                                        "currency": "USD"
+                                    },
+                                    "properties": {
+                                        "amount": {
+                                            "description": "A tip for the driver in cents. To be charged to the user's default charge account.",
+                                            "format": "int32",
+                                            "minimum": 0,
+                                            "type": "integer"
+                                        },
+                                        "currency": {
+                                            "description": "The currency in which you want to tip. e.g. USD",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ],
+                            "type": "object"
+                        }
+                    ],
+                    "description": "Tip amount in minor units and tip currency",
+                    "type": "object"
+                }
+            },
+            "required": [
+                "rating"
+            ],
+            "type": "object"
+        }
+    }
+}

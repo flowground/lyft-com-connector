@@ -1,0 +1,37 @@
+{
+    "type": "object",
+    "properties": {
+        "ride_type": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "lyft",
+                "lyft_line",
+                "lyft_plus",
+                "lyft_premier",
+                "lyft_lux",
+                "lyft_luxsuv"
+            ]
+        },
+        "start_lat": {
+            "required": true,
+            "type": "number",
+            "format": "double"
+        },
+        "start_lng": {
+            "required": true,
+            "type": "number",
+            "format": "double"
+        },
+        "end_lat": {
+            "required": false,
+            "type": "number",
+            "format": "double"
+        },
+        "end_lng": {
+            "required": false,
+            "type": "number",
+            "format": "double"
+        }
+    }
+}

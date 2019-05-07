@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "properties": {
+        "lat": {
+            "required": true,
+            "type": "number",
+            "format": "double"
+        },
+        "lng": {
+            "required": true,
+            "type": "number",
+            "format": "double"
+        }
+    }
+}

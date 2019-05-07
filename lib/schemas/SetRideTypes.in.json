@@ -1,0 +1,49 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "lat": 37.7833,
+                "lng": -122.4167,
+                "ride_types": [
+                    "lyft",
+                    "lyft_line",
+                    "lyft_plus"
+                ]
+            },
+            "properties": {
+                "lat": {
+                    "description": "The latitude component of a location",
+                    "format": "double",
+                    "type": "number"
+                },
+                "lng": {
+                    "description": "The longitude component of a location",
+                    "format": "double",
+                    "type": "number"
+                },
+                "ride_types": {
+                    "items": {
+                        "description": "The ID of the ride type",
+                        "enum": [
+                            "lyft",
+                            "lyft_line",
+                            "lyft_plus",
+                            "lyft_premier",
+                            "lyft_lux",
+                            "lyft_luxsuv"
+                        ],
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "lat",
+                "lng",
+                "ride_types"
+            ],
+            "type": "object"
+        }
+    }
+}

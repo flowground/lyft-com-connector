@@ -1,0 +1,51 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "example": {
+                        "lat": 36.9442175,
+                        "lng": -123.8679133
+                    },
+                    "properties": {
+                        "lat": {
+                            "description": "The latitude component of a location",
+                            "format": "double",
+                            "type": "number"
+                        },
+                        "lng": {
+                            "description": "The longitude component of a location",
+                            "format": "double",
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "lat",
+                        "lng"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "properties": {
+                        "address": {
+                            "description": "A human readable address at/near the given location",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "address": "123 Main St, Anytown, CA",
+                "lat": 36.9442175,
+                "lng": -123.8679133
+            },
+            "type": "object"
+        }
+    }
+}

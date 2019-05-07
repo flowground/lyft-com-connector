@@ -1,0 +1,327 @@
+{
+    "title": "Lyft",
+    "description": "Drive your app to success with Lyft's API",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/lyft.com/1.0.0/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://api.lyft.com/v1",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "Client_Authentication": {
+                "label": "OAuth 2.0 - Application Only Credentials",
+                "viewClass": "OAuthFieldView"
+            },
+            "User_Authentication": {
+                "label": "OAuth 2.0 - User Credentials",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://api.lyft.com/oauth/authorize",
+            "token_uri": "https://api.lyft.com/oauth/token"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "GetCost": {
+            "main": "./lib/actions/GetCost.js",
+            "title": "Cost estimates",
+            "description": "Estimate the cost of taking a Lyft between two points.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetCost.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetDrivers": {
+            "main": "./lib/actions/GetDrivers.js",
+            "title": "Available drivers nearby",
+            "description": "The drivers endpoint returns a list of nearby drivers' lat and lng at a given location.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetDrivers.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetETA": {
+            "main": "./lib/actions/GetETA.js",
+            "title": "Pickup ETAs",
+            "description": "The ETA endpoint lets you know how quickly a Lyft driver can come get you\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetETA.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetProfile": {
+            "main": "./lib/actions/GetProfile.js",
+            "title": "The user's general info",
+            "description": "The v1 of this endpoint returns the user's ID, v2 will return more general info about the user. We require authentication for this endpoint, so we extract the user ID from the access token.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetProfile.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetRides": {
+            "main": "./lib/actions/GetRides.js",
+            "title": "List rides",
+            "description": "Get a list of past & current rides for this passenger.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetRides.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "NewRide": {
+            "main": "./lib/actions/NewRide.js",
+            "title": "Request a Lyft",
+            "description": "Request a Lyft come pick you up at the given location.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/NewRide.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetRide": {
+            "main": "./lib/actions/GetRide.js",
+            "title": "Get the ride detail of a given ride ID",
+            "description": "Get the status of a ride along with information about the driver, vehicle and price of a given ride ID\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetRide.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "CancelRide": {
+            "main": "./lib/actions/CancelRide.js",
+            "title": "Cancel a ongoing requested ride",
+            "description": "Cancel a ongoing ride which was requested earlier by providing the ride id.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/CancelRide.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "SetRideDestination": {
+            "main": "./lib/actions/SetRideDestination.js",
+            "title": "Update the destination of the ride",
+            "description": "Add or update the ride's destination. Note that the ride must still be active (not droppedOff or canceled), and that destinations on Lyft Line rides can not be changed.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SetRideDestination.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "SetRideRating": {
+            "main": "./lib/actions/SetRideRating.js",
+            "title": "Add the passenger's rating, feedback, and tip",
+            "description": "Add the passenger's 1 to 5 star rating of the ride, optional written feedback, and optional tip amount in minor units and currency. The ride must already be dropped off, and ratings must be given within 24 hours of drop off. For purposes of display, 5 is considered the default rating. When this endpoint is successfully called, payment processing will begin.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SetRideRating.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetRideReceipt": {
+            "main": "./lib/actions/GetRideReceipt.js",
+            "title": "Get the receipt of the rides.",
+            "description": "Get the receipt information of a processed ride by providing the ride id. Receipts will only be available to view once the payment has been processed. In the case of canceled ride, cancellation penalty is included if applicable.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetRideReceipt.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetRideTypes": {
+            "main": "./lib/actions/GetRideTypes.js",
+            "title": "Types of rides",
+            "description": "The ride types endpoint returns information about what kinds of Lyft rides you can request at a given location.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetRideTypes.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "SetPrimeTime": {
+            "main": "./lib/actions/SetPrimeTime.js",
+            "title": "Preset Prime Time percentage",
+            "description": "Preset a Prime Time percentage in the region surrounding the specified location. This Prime Time percentage will be applied when requesting cost, or when requesting a ride in sandbox mode.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SetPrimeTime.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "SetRideStatus": {
+            "main": "./lib/actions/SetRideStatus.js",
+            "title": "Propagate ride through ride status",
+            "description": "Propagate a sandbox-ride through various ride status\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SetRideStatus.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "SetRideTypes": {
+            "main": "./lib/actions/SetRideTypes.js",
+            "title": "Preset types of rides for sandbox",
+            "description": "The sandbox-ridetypes endpoint allows you to preset the ridetypes in the region surrounding the specified latitude and longitude to allow testing different scenarios\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SetRideTypes.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "SetRideTypeAvailability": {
+            "main": "./lib/actions/SetRideTypeAvailability.js",
+            "title": "Driver availability for processing ride request",
+            "description": "Set driver availability for the provided ride_type in the city/region surrounding the specified location\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SetRideTypeAvailability.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
